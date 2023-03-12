@@ -1,0 +1,41 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+const { Router } = require('express')
+const router = Router()
+//////////////////////////////////////////////////////////////////////////////////////////
+const Auth = require('../middleware/auth')
+//////////////////////////////////////////////////////////////////////////////////////////
+router.get('/',Auth,async (req, res) => {
+
+    const { Index }  = require('../controllers/address')
+    const resultado = await Index()
+    res.status( resultado.status ).send( resultado.respuesta )
+
+})
+//////////////////////////////////////////////////////////////////////////////////////////
+router.get('/:idAddress',Auth,async (req, res)=>{
+
+    const { Read }  = require('../controllers/address')
+    const resultado = await Read( req.params )
+    res.status( resultado.status ).send( resultado.respuesta )
+    
+})
+//////////////////////////////////////////////////////////////////////////////////////////
+router.post('/',Auth,async ( req, res ) => {
+
+    const { Create }  = require('../controllers/address')
+    const data = Object.assign({idUser:req.session.idUser},req.body)
+    const resultado = await Create( data )
+    res.status( resultado.status ).send( resultado.respuesta )
+
+})
+//////////////////////////////////////////////////////////////////////////////////////////
+router.delete('/:idAddress',Auth,async (req, res) => {
+  
+    const { Delete }  = require('../controllers/address')
+    const resultado = await Delete( req.params )
+    res.status( resultado.status ).send( resultado.respuesta )
+
+})
+//////////////////////////////////////////////////////////////////////////////////////////
+module.exports = router
+//////////////////////////////////////////////////////////////////////////////////////////
