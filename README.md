@@ -7,7 +7,7 @@ Este es un pryecto de Backend `Express.js` y Test unitario `Jest`
 _Necesitas instalar lo siguiente:_ ⚠️
 
 * Instala Nodejs
-* Base De Datos Mysql
+* Base De Datos Mysql Nota:Crear una database llamada "loogistics" o renombrar la variable de entorno DATABASE en el archivo .env
 
 ## Deploy 🚀
 _Ejecuta los siguientes pasos en orden:_
